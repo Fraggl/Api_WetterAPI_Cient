@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace API_WetterAPI_Client
+namespace Test_App2
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
@@ -24,5 +24,32 @@ namespace API_WetterAPI_Client
         {
             InitializeComponent();
         }
+
+        private void Menu_1_Sub_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Schließen?", "Beenden",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question,
+                            MessageBoxResult.No);
+            if (result == MessageBoxResult.Yes)
+                Application.Current.Shutdown();
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Test erfolgreich :)");
+        }
+
+        private void Btn_Datenabfragen_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not Implemented");
+        }
+
+        private void ComboBox_AuswahlDaten_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }
