@@ -53,13 +53,11 @@ namespace Test_App2
 
         private void Calender_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            // ... Get reference.
             var calendar = sender as Calendar;
 
-            // ... See if a date is selected.
             if (calendar.SelectedDate.HasValue)
             {
-                // ... Display SelectedDate in Title.
+                // Display SelectedDate in Title
                 DateTime date = calendar.SelectedDate.Value;
                 this.Title = date.ToShortDateString();
             } 
