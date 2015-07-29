@@ -58,7 +58,7 @@
             </StatusBarItem>
         </StatusBar>
         <DataGrid Grid.Row="1" HeadersVisibility="None"/>
-        <Calendar x:Name="Cal_Calender_1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="170" Width="191"/>
+        <Calendar x:Name="Cal_Calender_1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="170" Width="191" SelectedDatesChanged="Calender_SelectedDatesChanged"/>
         <ScrollViewer x:Name="ScrollViewer_ViewErg" HorizontalAlignment="Left" Height="170" Margin="206,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="188" BorderThickness="0" Background="#FFCFD4DE">
             <ScrollViewer.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
