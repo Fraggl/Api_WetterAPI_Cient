@@ -1,25 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Test_App2
+namespace WetterAPI_Client
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        string queryString = "";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -38,13 +29,79 @@ namespace Test_App2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             MessageBox.Show("Test erfolgreich :)");
         }
 
         private void Btn_Datenabfragen_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            if (Cal.SelectedDates.Count > 0)
+            {
+                DateTime date = Cal.SelectedDate.Value;
+                
+                int day;
+                int month;
+                int year;
+                day = date.Day;
+                month = date.Month;
+                year = date.Year;
+
+                queryString = "date" + "/" + year + "/" + month + "/" + day;
+                titlechange(CreateRequest(queryString));
+            }
         }
+
+        private void titlechange(object urlRequest)
+        {
+            this.Title = urlRequest.ToString();
+        }
+
+        public static string CreateRequest(string queryString)
+        {
+            string UrlRequest = "http://192.168.178.20:5000/api/" +
+                                 queryString;
+            return (UrlRequest);
+        }
+
+        /*
+        public static Response MakeRequest(string requestUrl)
+        {
+            try
+            {
+                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                {
+                    if (response.StatusCode != HttpStatusCode.OK)
+                        throw new Exception(String.Format(
+                        "Server error (HTTP {0}: {1}).",
+                        response.StatusCode,
+                        response.StatusDescription));
+                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Response));
+                    object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
+                    Response jsonResponse
+                    = objResponse as Response;
+                    return jsonResponse;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        */
+
+
+        /*
+        private void callApi()
+        {
+            WebClient webClient = new WebClient();
+            dynamic result = JsonValue.Parse(webClient.DownloadString("http://192.168.178.20:5000/api/now"));
+            Console.WriteLine(result.response);
+        }
+
+        */
 
         private void ComboBox_AuswahlDaten_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -53,7 +110,7 @@ namespace Test_App2
 
         private void Calender_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            var calendar = sender as Calendar;
+            /* var calendar = sender as Calendar;
 
             if (calendar.SelectedDate.HasValue)
             {
@@ -61,6 +118,7 @@ namespace Test_App2
                 DateTime date = calendar.SelectedDate.Value;
                 this.Title = date.ToShortDateString();
             } 
+            */
         }
 
     }
